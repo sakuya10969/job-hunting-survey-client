@@ -2,12 +2,14 @@ import React from 'react';
 import { Paper, Text, Group, Stack, Grid, ActionIcon } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
+import { GRADES } from '../constants';
+import type { Grade } from '../constants';
 
 interface SurveyCardProps {
   id: number;
   name: string;
   email: string;
-  grade: string;
+  grade: Grade;
   industry: string;
   jobType: string;
   submittedAt: string;
@@ -22,6 +24,8 @@ const SurveyCard: React.FC<SurveyCardProps> = ({
   jobType,
   submittedAt
 }) => {
+  const gradeLabel = GRADES.find(g => g.value === grade)?.label || '';
+
   return (
     <Paper shadow="xs" p="md" withBorder>
       <Grid>
@@ -32,7 +36,7 @@ const SurveyCard: React.FC<SurveyCardProps> = ({
               <Text c="dimmed">({email})</Text>
             </Group>
             <Group>
-              <Text>{grade}</Text>
+              <Text>{gradeLabel}</Text>
               <Text>•</Text>
               <Text>{industry}</Text>
               <Text>•</Text>

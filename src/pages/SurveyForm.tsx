@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container, Title, Button, Stack, TextInput, Select, Textarea, Paper } from '@mantine/core';
 import { useForm, Controller } from 'react-hook-form';
+import { GRADES } from '../constants';
+import type { Grade } from '../constants';
 
 interface SurveyFormData {
   name: string;
   email: string;
-  grade: string;
+  grade: Grade;
   industry: string;
   jobType: string;
   motivation: string;
@@ -36,7 +38,7 @@ const SurveyForm: React.FC = () => {
               })}
             />
             <TextInput
-              label="メールアドレス" 
+              label="メールアドレス"
               placeholder="example@email.com"
               error={errors.email?.message}
               {...register('email', {
@@ -55,14 +57,7 @@ const SurveyForm: React.FC = () => {
                 <Select
                   label="学年"
                   placeholder="選択してください"
-                  data={[
-                    '学部1年生',
-                    '学部2年生', 
-                    '学部3年生',
-                    '学部4年生',
-                    '修士1年生',
-                    '修士2年生'
-                  ]}
+                  data={GRADES}
                   error={errors.grade?.message}
                   {...field}
                 />

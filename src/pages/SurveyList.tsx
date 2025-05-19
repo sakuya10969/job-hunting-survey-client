@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Title, Button, Group, Stack, Paper } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconPlus } from '@tabler/icons-react';
+import type { Grade } from '../constants';
 
 import SurveyCard from '../components/SurveyCard';
 
@@ -10,7 +11,7 @@ const mockSurveys = [
     id: 1,
     name: "山田 太郎",
     email: "yamada@example.com", 
-    grade: "学部3年生",
+    grade: "3" as Grade,
     industry: "IT・通信",
     jobType: "システムエンジニア",
     submittedAt: "2023-12-01"
@@ -19,7 +20,7 @@ const mockSurveys = [
     id: 2, 
     name: "鈴木 花子",
     email: "suzuki@example.com",
-    grade: "修士1年生", 
+    grade: "5" as Grade,
     industry: "コンサルティング",
     jobType: "ITコンサルタント",
     submittedAt: "2023-12-02"
