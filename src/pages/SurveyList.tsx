@@ -1,31 +1,22 @@
-import React from 'react';
-import { Container, Title, Button, Group, Stack, Paper } from '@mantine/core';
+import React, { Suspense } from 'react';
+import { Container, Title, Button, Group, Stack, Paper, Loader, Center } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconPlus } from '@tabler/icons-react';
 
-import type { Grade } from '@/constants';
 import SurveyCard from '@/components/SurveyCard';
+import { useGetSurveyList } from '@/api/useGetSurveyList';
 
-const mockSurveys = [
-  {
-    id: 1,
-    name: "山田 太郎",
-    email: "yamada@example.com", 
-    grade: "3" as Grade,
-    industry: "IT・通信",
-    jobType: "システムエンジニア",
-    submittedAt: "2023-12-01"
-  },
-  {
-    id: 2, 
-    name: "鈴木 花子",
-    email: "suzuki@example.com",
-    grade: "5" as Grade,
-    industry: "コンサルティング",
-    jobType: "ITコンサルタント",
-    submittedAt: "2023-12-02"
-  }
-];
+const SurveyListContent: React.FC = () => {
+  const { data } = useGetSurveyList();
+
+  return (
+    <Stack>
+      {data.surveys.map((survey) => (
+        <SurveyCard key={survey.id} {...survey} />
+      ))}
+    </Stack>
+  );
+};
 
 const SurveyList: React.FC = () => {
   return (
@@ -45,11 +36,13 @@ const SurveyList: React.FC = () => {
         </Group>
       </Paper>
 
-      <Stack>
-        {mockSurveys.map((survey) => (
-          <SurveyCard key={survey.id} {...survey} />
-        ))}
-      </Stack>
+      <Suspense fallback={
+        <Center h={200}>
+          <Loader size="lg" />
+        </Center>
+      }>
+        <SurveyListContent />
+      </Suspense>
     </Container>
   );
 };

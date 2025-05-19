@@ -12,7 +12,7 @@ interface SurveyFormData {
   selfPR: string;
 }
 
-interface SurveyResponse {
+interface SurveyFormDataResponse {
   id: number;
   name: string;
   email: string;
@@ -24,8 +24,8 @@ interface SurveyResponse {
   submittedAt: string;
 }
 
-const storeSurveyForm = async (data: SurveyFormData): Promise<SurveyResponse> => {
-  const response = await apiClient.post<SurveyResponse>('/survey', data);
+const storeSurveyForm = async (data: SurveyFormData): Promise<SurveyFormDataResponse> => {
+  const response = await apiClient.post<SurveyFormDataResponse>('/survey', data);
   return response.data;
 };
 
