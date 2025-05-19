@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import SurveyList from './pages/SurveyList';
-import SurveyForm from './pages/SurveyForm';
+import SurveyList from '@/pages/SurveyList';
+import SurveyForm from '@/pages/SurveyForm';
 
 function App() {
   return (

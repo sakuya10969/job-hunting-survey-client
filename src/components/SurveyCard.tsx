@@ -2,8 +2,9 @@ import React from 'react';
 import { Paper, Text, Group, Stack, Grid, ActionIcon } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
-import { GRADES } from '../constants';
-import type { Grade } from '../constants';
+
+import { GRADES } from '@/constants';
+import type { Grade } from '@/constants';
 
 interface SurveyCardProps {
   id: number;

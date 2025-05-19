@@ -1,8 +1,9 @@
 import React from 'react';
 import { Container, Title, Button, Stack, TextInput, Select, Textarea, Paper } from '@mantine/core';
 import { useForm, Controller } from 'react-hook-form';
-import { GRADES } from '../constants';
-import type { Grade } from '../constants';
+
+import { GRADES } from '@/constants';
+import type { Grade } from '@/constants';
 
 interface SurveyFormData {
   name: string;

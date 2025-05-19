@@ -2,9 +2,9 @@ import React from 'react';
 import { Container, Title, Button, Group, Stack, Paper } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconPlus } from '@tabler/icons-react';
-import type { Grade } from '../constants';
 
-import SurveyCard from '../components/SurveyCard';
+import type { Grade } from '@/constants';
+import SurveyCard from '@/components/SurveyCard';
 
 const mockSurveys = [
   {
