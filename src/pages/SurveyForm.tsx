@@ -1,9 +1,11 @@
 import React from 'react';
 import { Container, Title, Button, Stack, TextInput, Select, Textarea, Paper } from '@mantine/core';
 import { useForm, Controller } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { GRADES } from '@/constants';
 import type { Grade } from '@/constants';
+import { useStoreSurveyForm } from '@/api/useStoreSurveyForm';
 
 interface SurveyFormData {
   name: string;
@@ -16,11 +18,17 @@ interface SurveyFormData {
 }
 
 const SurveyForm: React.FC = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit, control, formState: { errors } } = useForm<SurveyFormData>();
+  const { mutate, isPending } = useStoreSurveyForm();
 
   const onSubmit = (data: SurveyFormData) => {
-    console.log(data);
-    // ここでフォームデータの送信処理を実装
+    mutate(data, {
+      onSuccess: () => {
+        // 成功時に一覧ページに遷移
+        navigate('/');
+      },
+    });
   };
 
   return (
@@ -102,7 +110,14 @@ const SurveyForm: React.FC = () => {
                 maxLength: { value: 1000, message: '1000文字以内で入力してください' }
               })}
             />
-            <Button type="submit" variant="filled" size="md" fullWidth>
+            <Button 
+              type="submit" 
+              variant="filled" 
+              size="md" 
+              fullWidth
+              loading={isPending}
+              disabled={isPending}
+            >
               送信する
             </Button>
           </Stack>
